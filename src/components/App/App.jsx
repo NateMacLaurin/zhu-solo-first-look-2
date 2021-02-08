@@ -20,7 +20,21 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import teal from '@material-ui/core/colors/teal';
+
 import './App.css';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#43a047'
+    },
+    secondary: {
+      main: teal[500]
+    }
+  }
+});
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +44,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div>
         <Nav />
@@ -110,6 +125,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

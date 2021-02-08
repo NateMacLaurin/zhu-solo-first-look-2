@@ -2,12 +2,32 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 
+import { makeStyles } from '@material-ui/core/styles';
+
+import { Button } from '@material-ui/core';
+import { VpnKey } from  '@material-ui/icons';
+//import Button from '@material-ui/core/button
+
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
+
+//pass object of styles we want class name is the key (material-ui only)
+const useStyles = makeStyles({
+  //make root class
+  root : {
+    //styles applied to the root class
+    height: '48px',
+    padding: '0 30px',
+    //css border-radius 
+    borderRadius: 3,
+    background: 'linear-Gradient(45deg, #3FEB8B 30%, #FF8E53 90%)',
+  }
+});
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
+  const classes = useStyles();
 
   const onLogin = (event) => {
     history.push('/login');
@@ -56,9 +76,15 @@ function LandingPage() {
 
           <center>
             <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
+            <Button 
+              variant="outlined" 
+              color="secondary"
+              className={classes.root} 
+              startIcon={<VpnKey />}
+              onClick={onLogin}
+            >
               Login
-            </button>
+            </Button>
           </center>
         </div>
       </div>
